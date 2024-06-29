@@ -5,11 +5,13 @@ from django.conf import settings
 
 class SellerModel(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL , on_delete=models.CASCADE)
-
+    phone = models.CharField(max_length= 255)
 
 class StoreModel(models.Model):
+    owner = models.ForeignKey(SellerModel , on_delete=models.CASCADE , default=None)
     name = models.CharField(max_length= 255)
     address = models.TextField()
+
     # logo = models.ImageField(upload_to=)
 
 class StuffModel(models.Model):
